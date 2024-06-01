@@ -5,7 +5,6 @@ RegisterNetEvent('walker_moneywash_removemoney', function(kiekis)
     local procentas = kiekis * 0.10
     local visasuma = kiekis - procentas
     local black_money = exports.ox_inventory:Search(Player, 'count','black_money')
-    local WashTotal = kiekis
     if black_money >= kiekis then
         exports.ox_inventory:RemoveItem(Player, 'black_money', kiekis)
         Citizen.Wait(1000)
