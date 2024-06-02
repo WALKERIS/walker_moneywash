@@ -38,6 +38,7 @@ exports.ox_target:addSphereZone({
 })
 
 function pradetiplovima()
+    lib.print.info("Scriptas veike: ", latency)
 lib.progressCircle({
     duration = 3000,
     position = 'bottom',
