@@ -38,7 +38,6 @@ exports.ox_target:addSphereZone({
 })
 
 function pradetiplovima()
-    lib.print.info("Scriptas veike: ", latency)
 lib.progressCircle({
     duration = 3000,
     position = 'bottom',
@@ -61,8 +60,21 @@ local input = lib.inputDialog('Kiek Noreti isplauti pinigu?', {'Suma?'})
 if not input then return end
 kiekis = tonumber(input[1])
  --- TriggerServerEvent('walker_moneywash_removemoney', kiekis)
+ lib.print.info("Scriptas veike:) ", kiekis)
 pedasduxas()
 SetNewWaypoint(-234.9430 --[[ number ]], 311.5639 --[[ number ]])
+--[[local marker = lib.marker.new({
+	type = 1,
+	coords = GetEntityCoords(ped2),
+	color = { r = 255, g = 0, b = 0, a = 200 },
+})
+Citizen.CreateThread(function()
+	while true do
+		marker:draw()
+ 
+		Citizen.Wait(1)
+	end
+end)]]--
 end
 
 function pedasduxas()
@@ -117,9 +129,11 @@ lib.progressCircle({
     },
 })
 TriggerServerEvent('walker_moneywash_removemoney', kiekis)
+Citizen.Wait(100)
 FreezeEntityPosition(ped2, false)
 SetEntityInvincible(ped2, false)
 SetBlockingOfNonTemporaryEvents(ped2, false)
+TaskWanderStandard(ped2 --[[ Ped ]], 10.0 --[[ number ]], 10 --[[ integer ]])
 end
 
 function blip()
