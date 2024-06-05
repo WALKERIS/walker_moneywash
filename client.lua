@@ -38,6 +38,7 @@ exports.ox_target:addSphereZone({
 })
 
 function pradetiplovima()
+    panaudotas = true
 lib.progressCircle({
     duration = 3000,
     position = 'bottom',
@@ -61,8 +62,10 @@ if not input then return end
 kiekis = tonumber(input[1])
  --- TriggerServerEvent('walker_moneywash_removemoney', kiekis)
  lib.print.info("Scriptas veike:) ", kiekis)
+ TriggerServerEvent('walker_moneywash_randomlokacija')
 pedasduxas()
-SetNewWaypoint(-234.9430 --[[ number ]], 311.5639 --[[ number ]])
+TriggerServerEvent('walker_sendmailtoplayer')
+--SetNewWaypoint(-234.9430 --[[ number ]], 311.5639 --[[ number ]])
 --[[local marker = lib.marker.new({
 	type = 1,
 	coords = GetEntityCoords(ped2),
@@ -76,6 +79,8 @@ Citizen.CreateThread(function()
 	end
 end)]]--
 end
+
+
 
 function pedasduxas()
     local ped2 = CreatePed(4, GetHashKey("s_m_y_xmech_02"), -234.9430, 311.5639, 92.1662 - 1, 261.3563, false, true) --- -234.9430, 311.5639, 92.1662, 261.3563
@@ -134,6 +139,7 @@ FreezeEntityPosition(ped2, false)
 SetEntityInvincible(ped2, false)
 SetBlockingOfNonTemporaryEvents(ped2, false)
 TaskWanderStandard(ped2 --[[ Ped ]], 10.0 --[[ number ]], 10 --[[ integer ]])
+panaudotas = false
 end
 
 function blip()
@@ -157,3 +163,57 @@ end
 RegisterNetEvent('walker_moneywash_romovetarget', function()
     panaudotas = false
 end)
+
+RegisterNetEvent('walker_waypoint', function()
+    SetNewWaypoint(-234.9430, 311.5639)
+end)
+
+--[[RegisterNetEvent('walker_moneywash_randomlokacija', function()
+local lokacija = math.random(1, 3)
+
+if lokacija == 1 then 
+    local ped2 = CreatePed(4, GetHashKey("s_m_y_xmech_02"), -234.9430, 311.5639, 92.1662 - 1, 261.3563, false, true) --- -234.9430, 311.5639, 92.1662, 261.3563
+    FreezeEntityPosition(ped2, true)
+    SetEntityInvincible(ped2, true)
+    SetBlockingOfNonTemporaryEvents(ped2, true)
+    TaskPlayAnim(ped2, "missfbi_s4mop", "guard_idle_b", 8.0, 8.0, 1, 50, 0, false, false, true)
+    pridetitargeta()
+    lib.notify({
+        title = 'Petras pasake jum vieta kur bus jo draugas',
+        description = nil,
+        type = 'info'
+    })
+    kordinates = -234.9430, 311.5639
+    TriggerServerEvent('walker_sendmailtoplayer', kordinates)
+end
+else
+    local ped2 = CreatePed(4, GetHashKey("s_m_y_xmech_02"), -1004.7804, 4842.7373, 275.0065 - 1, 92.5087, false, true) --- -1004.7804, 4842.7373, 275.0065, 92.5087
+    FreezeEntityPosition(ped2, true)
+    SetEntityInvincible(ped2, true)
+    SetBlockingOfNonTemporaryEvents(ped2, true)
+    TaskPlayAnim(ped2, "missfbi_s4mop", "guard_idle_b", 8.0, 8.0, 1, 50, 0, false, false, true)
+    pridetitargeta()
+    lib.notify({
+        title = 'Petras pasake jum vieta kur bus jo draugas',
+        description = nil,
+        type = 'info'
+    })
+    kordinates = -1004.7804, 4842.7373
+    TriggerServerEvent('walker_sendmailtoplayer', kordinates)
+end
+else
+    local ped2 = CreatePed(4, GetHashKey("s_m_y_xmech_02"), 90.3827, 3748.6831, 40.7736 - 1, 266.8019, false, true) --- 90.3827, 3748.6831, 40.7736, 266.8019
+    FreezeEntityPosition(ped2, true)
+    SetEntityInvincible(ped2, true)
+    SetBlockingOfNonTemporaryEvents(ped2, true)
+    TaskPlayAnim(ped2, "missfbi_s4mop", "guard_idle_b", 8.0, 8.0, 1, 50, 0, false, false, true)
+    pridetitargeta()
+    lib.notify({
+        title = 'Petras pasake jum vieta kur bus jo draugas',
+        description = nil,
+        type = 'info'
+    })
+    kordinates = 90.3827, 3748.6831
+    TriggerServerEvent('walker_sendmailtoplayer', kordinates)
+end
+end)]]--
